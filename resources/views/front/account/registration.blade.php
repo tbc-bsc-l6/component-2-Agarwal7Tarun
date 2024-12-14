@@ -9,7 +9,8 @@
             <div class="col-md-5">
                 <div class="card shadow border-0 p-5">
                     <h1 class="h3">Register</h1>
-                    <form action="" name="registrationForm" id="registrationForm">
+                    <form action="{{ route('account.processRegistration') }}" method="POST" id="registrationForm">
+                        @csrf
                         <div class="mb-3">
                             <label for="" class="mb-2">Name*</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
@@ -17,7 +18,7 @@
                         </div> 
                         <div class="mb-3">
                             <label for="" class="mb-2">Email*</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email">
                             <p></p>
                         </div> 
                         <div class="mb-3">
@@ -30,8 +31,8 @@
                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Please Confirm Password">
                             <p></p>
                         </div> 
-                        <button class="btn btn-primary mt-2">Register</button>
-                    </form>                    
+                        <button class="btn btn-primary mt-2" type="submit">Register</button>
+                    </form>                                       
                 </div>
                 <div class="mt-4 text-center">
                     <p>Have an account? <a  href="login.html">Login</a></p>
@@ -108,6 +109,7 @@ $("#registrationForm").submit(function(e){
                 $("#confirm_password").removeClass('is-invalid')
                     .siblings('p').removeClass('invalid-feedback')
                     .html('');
+                window.location.href='{{ route("account.login") }}';
             }   
         
         }
