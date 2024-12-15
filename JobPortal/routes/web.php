@@ -24,15 +24,12 @@ Route::prefix('account')->group(function () {
         Route::put('/updateProfile', [AccountController::class, 'updateProfile'])->name('account.updateProfile');
         Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
         Route::post('/updateProfileImg', [AccountController::class, 'updateProfileImg'])->name('account.updateProfileImg');
+        Route::get('/createJob', [AccountController::class, 'createJob'])->name('account.createJob');
+        Route::post('/save-job',[AccountController::class,'saveJob'])->name('account.saveJob');
+        Route::get('/my-jobs',[AccountController::class,'myJobs'])->name('account.myJobs');
+
+        
     });
 
 });
-
-use Intervention\Image\Laravel\Facades\Image;
-
-Route::get('/test', function () {
-$image = Image::read('images/example.jpg');
-});
-
-
 
