@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+
+
 
 class AccountController extends Controller
 {
@@ -120,5 +128,49 @@ class AccountController extends Controller
         Auth::logout();
         return redirect()->route('account.login');
 
+    }
+
+    public function updateProfileImg(Request $request){
+
+        $id = Auth::user()->id;
+
+        $validator = Validator::make($request->all(),[
+            'image' => 'required|image'
+        ]);
+        if($validator->passes()){
+            $image = $request->image;
+            $ext = $image->getClientOriginalExtension();
+            $imageName = $id.'-'.time().'.'.$ext;
+            $image->move(public_path('/profile_img/'), $imageName);
+
+            //Create Thumbnail
+            $sourcePath = public_path('/profile_img/'.$imageName);
+            $manager = new ImageManager(Driver::class);
+            $image = $manager->read($sourcePath);
+
+            // crop the best fitting 5:3 (600x360) ratio and resize to 600x360 pixel
+            $image->cover(150, 150);
+            $image->toPng()->save(public_path('/profile_img/thumb/'.$imageName));
+
+            //Delete old profile images
+
+            File::delete(public_path('/profile_img/thumb/'.Auth::user()->image));
+            File::delete(public_path('/profile_img/'.Auth::user()->image));
+
+
+            User::where('id',$id)->update(['image'=>$imageName]);
+
+            session()->flash('success','Profile picture updated successfully');
+
+            return response()->json([
+                'status' => true,
+                'errors' => []
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
     }
 }

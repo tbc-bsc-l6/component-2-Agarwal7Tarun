@@ -3,6 +3,7 @@ use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\AccountController;
 use \Illuminate\Support\Facades\Route;
 
+
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -22,6 +23,16 @@ Route::prefix('account')->group(function () {
         Route::get('/profile', [AccountController::class, 'profile'])->name('account.profile');
         Route::put('/updateProfile', [AccountController::class, 'updateProfile'])->name('account.updateProfile');
         Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
+        Route::post('/updateProfileImg', [AccountController::class, 'updateProfileImg'])->name('account.updateProfileImg');
     });
+
 });
+
+use Intervention\Image\Laravel\Facades\Image;
+
+Route::get('/test', function () {
+$image = Image::read('images/example.jpg');
+});
+
+
 
