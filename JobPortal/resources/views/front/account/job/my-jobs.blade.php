@@ -31,7 +31,7 @@
                                 <h3 class="fs-4 mb-1">My Jobs</h3>
                             </div>
                             <div style="margin-top: -10px;">
-                                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Post a Job</a>
+                                <a class="btn btn-primary" href="{{ route('account.createJob') }}">Post a Job</a>
                             </div>
 
                         </div>
@@ -52,13 +52,13 @@
                                         <tr class="active">
                                             <td>
                                                 <div class="job-name fw-500">{{ $job->title }}</div>
-                                                <div class="info1">{{ $job->jobType->name }} . {{ $job->location }}</div>
+                                                <div class="info1">{{ $job->jobType->name }} | {{ $job->location }}</div>
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($job->created_at )->format('d M, Y') }}</td>
                                             <td>0 Applications</td>
                                             <td>
                                                 @if($job->status == 1)
-                                                <div class="job-status text-capitalize">active</div>
+                                                <div class="job-status text-capitalize">Active</div>
                                                 @else
                                                 <div class="job-status text-capitalize">Block</div>
                                                 @endif
@@ -68,11 +68,11 @@
                                                     <button href="#" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                     </button>
-                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                    {{-- <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a class="dropdown-item" href="{{ route('jobDetail',$job->id) }}"> <i class="fa fa-eye" aria-hidden="true"></i> View</a></li>
                                                         <li><a class="dropdown-item" href="{{ route('account.editJob',$job->id) }}"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
                                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="deleteJob({{ $job->id }})"><i class="fa fa-trash" aria-hidden="true"></i> Remove</a></li>
-                                                    </ul>
+                                                    </ul> --}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -99,7 +99,7 @@
 @endsection
 
 @section('customJs')
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     function deleteJob(jobId){
         if(confirm("Are you sure you want to delete?")){
             $.ajax({
@@ -116,5 +116,5 @@
             });
         }
     }
-</script>
+</script> --}}
 @endsection

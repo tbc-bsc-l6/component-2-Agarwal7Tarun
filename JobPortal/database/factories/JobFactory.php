@@ -20,7 +20,7 @@ class JobFactory extends Factory
             'title' => fake()->name,
             'user_id' => rand(1,3), // this is because user table has three users
             'job_type_id' => rand(1,5), // it will get random numbers. We can match with data like there are 5 category name each column name has unique id
-            'category_id' => rand(1,5),
+            'category_id' => rand(1,20),
             'vacancy' => rand(1,5),
             'location' => fake()->city,
             'description' => fake()->text,

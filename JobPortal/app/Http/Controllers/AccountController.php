@@ -206,7 +206,7 @@ class AccountController extends Controller
             $job->title = $request->title;
             $job->category_id = $request->category;
             $job->job_type_id = $request->jobType;
-            // $job->user_id = Auth::user()->id;
+            $job->user_id = Auth::user()->id;
             $job->vacancy = $request->vacancy;
             $job->salary = $request->salary;
             $job->location = $request->location;
@@ -236,8 +236,6 @@ class AccountController extends Controller
 
         // Show all jobs
         public function myJobs(){
-
-            //metioned the code of the paginator in AppServiceProvider Class otherwise your paginator will not work perfectly
     
             $jobs = Job::where('user_id',Auth::user()->id)->with('jobType')->orderBy('created_at','DESC')->paginate(10);
             return view('front.account.job.my-jobs',[
