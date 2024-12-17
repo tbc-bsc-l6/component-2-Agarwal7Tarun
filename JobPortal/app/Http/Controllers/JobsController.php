@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
+use App\Models\Job;
+use App\Models\JobType;
 class JobsController extends Controller
 {
         //This method will show jobs page
