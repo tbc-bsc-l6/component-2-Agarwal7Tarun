@@ -105,7 +105,7 @@
                             <div class="jobs_left d-flex align-items-center">
 
                                 <div class="jobs_conetent">
-                                        <h4>Applicants</h4>
+                                        <h4>Applicants </h4>
 
                                 </div>
                             </div>

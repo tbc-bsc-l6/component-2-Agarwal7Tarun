@@ -63,8 +63,7 @@ unset($__errorArgs, $__bag); ?>
                         </div> 
                         <div class="justify-content-between d-flex">
                         <button class="btn btn-primary mt-2">Login</button>
-                            <a href="forgot-password.html" class="mt-3">Forgot Password?</a>
-                        </div>
+                    </div>
                     </form>                    
                 </div>
                 <div class="mt-4 text-center">

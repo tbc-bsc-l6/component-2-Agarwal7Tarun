@@ -24,6 +24,9 @@
                 <a href="<?php echo e(route('account.createJob')); ?>">Post a Job</a>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <a href="<?php echo e(route('account.viewJobApplications')); ?>">View Job Applications</a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <a href="<?php echo e(route('account.myJobs')); ?>">My Jobs</a>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center p-3">

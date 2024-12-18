@@ -12,7 +12,6 @@ Route::get('/jobs/detail/{id}', [JobsController::class, 'jobDetail'])->name('job
 // Apply job Route
 Route::post('/apply-job',[JobsController::class,'applyJob'])->name('applyJob');
 Route::post('/save-job',[JobsController::class,'saveJob'])->name('saveJob');
-
 // Guest Middleware Routes
 // Grouped Account Routes
 Route::prefix('account')->group(function () {
@@ -31,6 +30,7 @@ Route::prefix('account')->group(function () {
         Route::get('/logout', [AccountController::class, 'logout'])->name('account.logout');
         Route::post('/updateProfileImg', [AccountController::class, 'updateProfileImg'])->name('account.updateProfileImg');
         Route::get('/createJob', [AccountController::class, 'createJob'])->name('account.createJob');
+        Route::get('/view-job-applications',[AccountController::class,'viewJobApplications'])->name('account.viewJobApplications');
         Route::post('/save-job',[AccountController::class,'saveJob'])->name('account.saveJob');
         Route::get('/my-jobs',[AccountController::class,'myJobs'])->name('account.myJobs');
         Route::get('/edit-job/edit/{jobId}',[AccountController::class,'editJob'])->name('account.editJob');
@@ -40,7 +40,8 @@ Route::prefix('account')->group(function () {
         Route::post('/remove-job-application',[AccountController::class,'removeJobs'])->name('account.removeJobs');
         Route::get('/saved-jobs',[AccountController::class,'savedJobs'])->name('account.savedJobs');
         Route::post('/remove-saved-job',[AccountController::class,'removeSavedJob'])->name('account.removeSavedJob');
-        // Route::post('/delete-job',[AccountController::class,'deleteJob'])->name('account.deleteJob');
+        // Change Password
+        Route::post('/change-password',[AccountController::class,'changePassword'])->name('account.changePassword');
 
         
     });

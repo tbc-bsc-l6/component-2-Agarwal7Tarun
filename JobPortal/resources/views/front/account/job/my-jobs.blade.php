@@ -55,7 +55,10 @@
                                                 <div class="info1">{{ $job->company_name }} | {{ $job->location }} | {{ $job->jobType->name }} </div>
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($job->created_at )->format('d M, Y') }}</td>
-                                            <td>0 Applications</td>
+                                            <td>
+                                                {{ $job->applications->count() }} Application{{ $job->applications->count() != 1 ? 's' : '' }}
+                                            </td>
+                                            
                                             <td>
                                                 @if($job->status == 1)
                                                 <div class="job-status text-capitalize">Active</div>

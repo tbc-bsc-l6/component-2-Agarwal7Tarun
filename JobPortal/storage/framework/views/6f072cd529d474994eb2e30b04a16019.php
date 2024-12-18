@@ -18,57 +18,60 @@
             <div class="col-lg-9">
                 <?php echo $__env->make('front.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <div class="card border-0 shadow mb-4">
-                    <div class="card border-0 shadow mb-4">
-                        <form action="" method="post" id="userForm" name="userForm">
-                            <?php echo csrf_field(); ?>
-                            <div class="card-body  p-4">
-                                <h3 class="fs-4 mb-1">My Profile</h3>
-                                <div class="mb-4">
-                                    <label for="" class="mb-2">Name*</label>
-                                    <input type="text" value="<?php echo e($user->name); ?>" name="name" id="name" placeholder="Enter Name" class="form-control">
-                                    <p></p>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="" class="mb-2">Email*</label>
-                                    <input type="text" value="<?php echo e($user->email); ?>" name="email" id="email" placeholder="Enter Email" class="form-control">
-                                    <p></p>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="" class="mb-2">Designation</label>
-                                    <input type="text" value="<?php echo e($user->designation); ?>" name="designation" id="designation" placeholder="Designation" class="form-control">
-                                </div>
-                                <div class="mb-4">
-                                    <label for="" class="mb-2">Mobile</label>
-                                    <input type="text" value="<?php echo e($user->mobile); ?>" name="mobile" id="mobile" placeholder="Mobile" class="form-control">
-                                </div>
-                            </div>
-                            <div class="card-footer  p-4">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+                <form action="" method="post" id="userForm" name="userForm">
+                    <?php echo csrf_field(); ?>
+                    <div class="card-body  p-4">
+                        <h3 class="fs-4 mb-1">My Profile</h3>
+                        <div class="mb-4">
+                            <label for="" class="mb-2">Name*</label>
+                            <input type="text" value="<?php echo e($user->name); ?>" name="name" id="name" placeholder="Enter Name" class="form-control">
+                            <p></p>
                         </div>
-                    <form action="" method="post" name="changePasswordForm" id="changePasswordForm">
+                        <div class="mb-4">
+                            <label for="" class="mb-2">Email*</label>
+                            <input type="text" value="<?php echo e($user->email); ?>" name="email" id="email" placeholder="Enter Email" class="form-control">
+                            <p></p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="mb-2">Designation</label>
+                            <input type="text" value="<?php echo e($user->designation); ?>" name="designation" id="designation" placeholder="Designation" class="form-control">
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="mb-2">Mobile</label>
+                            <input type="text" value="<?php echo e($user->mobile); ?>" name="mobile" id="mobile" placeholder="Mobile" class="form-control">
+                        </div>
+                    </div>
+                    <div class="card-footer  p-4">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+                </div>
+
+                <form action="" method="post" name="changePasswordForm" id="changePasswordForm">
                     <div class="card border-0 shadow mb-4">
                         <div class="card-body p-4">
                             <h3 class="fs-4 mb-1">Change Password</h3>
                             <div class="mb-4">
                                 <label for="" class="mb-2">Old Password*</label>
-                                <input type="password" placeholder="Old Password" class="form-control">
+                                <input type="password" name="old_password" id="old_password" placeholder="Old Password" class="form-control">
+                                <p></p>
                             </div>
                             <div class="mb-4">
                                 <label for="" class="mb-2">New Password*</label>
-                                <input type="password" placeholder="New Password" class="form-control">
+                                <input type="password" name="new_password" id="new_password" placeholder="New Password" class="form-control">
+                                <p></p>
                             </div>
                             <div class="mb-4">
                                 <label for="" class="mb-2">Confirm Password*</label>
-                                <input type="password" placeholder="Confirm Password" class="form-control">
-                            </div>                        
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="form-control">
+                                <p></p>
+                            </div>
                         </div>
                         <div class="card-footer  p-4">
-                            <button type="button" class="btn btn-primary">Update</button>
+                            <button type="submit" name="submit" id="submit" class="btn btn-primary">Update</button>
                         </div>
-                    </div>     
-                </form>          
+                    </div>
+            </form>
             </div>
         </div>
     </div>
@@ -76,7 +79,6 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('customJs'); ?>
 <?php $__env->startSection('customJs'); ?>
 <script type="text/javascript">
     $("#userForm").submit(function (e) {
@@ -115,6 +117,57 @@
         });
 
     });
+
+    // Change Password js code
+    $("#changePasswordForm").submit(function (e) {
+        e.preventDefault();
+
+        $("#submit").prop('disabled', true);
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo e(route('account.changePassword')); ?>",
+            data: $("#changePasswordForm").serializeArray(),
+            dataType: "json",
+            success: function (response) {
+
+                $("#submit").prop('disabled', false);
+
+                if(response.status == true){
+
+                    $("#old_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#new_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#confirm_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+
+                    window.location.href = "<?php echo e(route('account.profile')); ?>";
+
+                }else{
+                    var errors = response.errors;
+                    if(errors.old_password){
+                        $("#old_password").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.old_password);
+                    }else{
+                        $("#old_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    }
+
+                    if(errors.new_password){
+                        $("#new_password").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.new_password);
+                    }else{
+                        $("#new_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    }
+
+                    if(errors.confirm_password){
+                        $("#confirm_password").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.confirm_password);
+                    }else{
+                        $("#confirm_password").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    }
+                }
+            }
+        });
+
+
+    });
+
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('front.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\component-2-Agarwal7Tarun\JobPortal\resources\views/front/account/profile.blade.php ENDPATH**/ ?>

@@ -105,6 +105,7 @@ class JobsController extends Controller
                  'applications' => $applications, 
                 ]);
         }
+
     // Apply job method
     public function applyJob(Request $request){
         $id = $request->id;

@@ -52,7 +52,11 @@
                                                 <div class="info1"><?php echo e($job->company_name); ?> | <?php echo e($job->location); ?> | <?php echo e($job->jobType->name); ?> </div>
                                             </td>
                                             <td><?php echo e(\Carbon\Carbon::parse($job->created_at )->format('d M, Y')); ?></td>
-                                            <td>0 Applications</td>
+                                            <td>
+                                                <?php echo e($job->applications->count()); ?> Application<?php echo e($job->applications->count() != 1 ? 's' : ''); ?>
+
+                                            </td>
+                                            
                                             <td>
                                                 <?php if($job->status == 1): ?>
                                                 <div class="job-status text-capitalize">Active</div>
