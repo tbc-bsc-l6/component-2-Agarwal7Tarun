@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('body'); ?>
 
 <section class="section-3 py-5 bg-2 ">

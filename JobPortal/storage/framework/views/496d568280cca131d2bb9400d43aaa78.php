@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('body'); ?>
 
 <section class="section-0 lazy d-flex bg-image-style dark align-items-center " class="" data-bg="<?php echo e(asset('assets/images/banner5.jpg')); ?>">
@@ -105,7 +103,7 @@
                                     </div>
 
                                     <div class="d-grid mt-3">
-                                        <a href="" class="btn btn-primary btn-lg">Details</a>
+                                        <a href="<?php echo e(route('jobDetail',$featuredJob->id)); ?>" class="btn btn-primary btn-lg">Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +152,7 @@
                                     </div>
 
                                     <div class="d-grid mt-3">
-                                        <a href="" class="btn btn-primary btn-lg">Details</a>
+                                        <a href="<?php echo e(route('jobDetail',$latestJob->id)); ?>" class="btn btn-primary btn-lg">Details</a>
                                     </div>
                                 </div>
                             </div>

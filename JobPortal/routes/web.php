@@ -9,6 +9,9 @@ use \Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 Route::get('/jobs/detail/{id}', [JobsController::class, 'jobDetail'])->name('jobDetail');
+// Apply job Route
+Route::post('/apply-job',[JobsController::class,'applyJob'])->name('applyJob');
+Route::post('/save-job',[JobsController::class,'saveJob'])->name('saveJob');
 
 // Guest Middleware Routes
 // Grouped Account Routes

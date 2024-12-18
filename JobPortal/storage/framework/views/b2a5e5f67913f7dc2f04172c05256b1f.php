@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('body'); ?>
 <section class="section-5">
     <div class="container my-5">

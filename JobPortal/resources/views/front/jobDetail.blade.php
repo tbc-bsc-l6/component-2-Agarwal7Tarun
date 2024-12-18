@@ -51,7 +51,7 @@
                     </div>
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
-                            <h4>Job description</h4>
+                            <h4>Job Description</h4>
                               <p>{!! nl2br($job->description) !!}</p>
                         </div>
 
@@ -149,7 +149,7 @@
                 <div class="card shadow border-0">
                     <div class="job_sumary">
                         <div class="summery_header pb-1 pt-4">
-                            <h3>Job Summery</h3>
+                            <h3>Job Summary</h3>
                         </div>
                         <div class="job_content pt-3">
                             <ul>
@@ -202,7 +202,7 @@
             if(confirm('Are you sure you want to apply on this job?')){
                 $.ajax({
                     type: "POST",
-                    // url: '{{ route("applyJob") }}',
+                    url: '{{ route("applyJob") }}',
                     data: {id:id},
                     dataType: "json",
                     success: function (response) {
