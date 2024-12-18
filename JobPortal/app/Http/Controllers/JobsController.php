@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobType;
+use Illuminate\Support\Facades\Auth;
 class JobsController extends Controller
 {
         //This method will show jobs page
@@ -91,11 +92,11 @@ class JobsController extends Controller
             }
     
             // fetch applicants
-            $applications = JobApplication::where('job_id', $id)->with('user')->get();
+            // $applications = JobApplication::where('job_id', $id)->with('user')->get();
             return view('front.jobDetail',[
                  'job' => $job,
                  'count' => $count,
-                 'applications' => $applications,
+                //  'applications' => $applications,
                 ]);
         }
     

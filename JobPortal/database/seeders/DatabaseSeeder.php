@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\Category::factory(20)->create();
         // \App\Models\JobType::factory(1)->create();
-    //    \App\Models\Job::factory(25)->create();
+       \App\Models\Job::factory(50)->create();
     }
 }

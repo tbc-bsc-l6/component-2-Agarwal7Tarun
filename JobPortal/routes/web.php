@@ -8,6 +8,7 @@ use \Illuminate\Support\Facades\Route;
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
+Route::get('/jobs/detail/{id}', [JobsController::class, 'jobDetail'])->name('jobDetail');
 
 // Guest Middleware Routes
 // Grouped Account Routes
