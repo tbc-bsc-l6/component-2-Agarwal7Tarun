@@ -8,7 +8,7 @@
             <div class="col-12 col-xl-8">
                 <h1>Find your dream job</h1>
                 <p>Thounsands of jobs available.</p>
-                <div class="banner-btn mt-5"><a href="" class="btn btn-primary mb-4 mb-sm-0">Explore Now</a></div>
+                <div class="banner-btn mt-5"><a href="{{ route('jobs') }}" class="btn btn-primary mb-4 mb-sm-0">Explore Now</a></div>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
 <section class="section-1 py-5 ">
     <div class="container">
-        <form action="" method="get">
+        <form action="{{ route('jobs') }}" method="get">
         <div class="card border-0 shadow p-5">
             <div class="row">
                 <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
@@ -58,12 +58,17 @@
                 @foreach ($categories as $category)
                     <div class="col-lg-4 col-xl-3 col-md-6">
                         <div class="single_catagory">
-                            <a href=""><h4 class="pb-2">{{ $category->name }}</h4></a>
-                            <p class="mb-0"> <span>0</span> Available position</p>
+                            <a href="{{ route('jobs').'?category='.$category->id }}">
+                                <h4 class="pb-2">{{ $category->name }}</h4>
+                            </a>
+                            <p class="mb-0">
+                                <span>{{ $category->jobs()->count() }}</span> Available position{{ $category->jobs()->count() != 1 ? 's' : '' }}
+                            </p>
                         </div>
                     </div>
                 @endforeach
             @endif
+
 
         </div>
     </div>
@@ -105,7 +110,7 @@
                                     </div>
 
                                     <div class="d-grid mt-3">
-                                        <a href="{{ route('jobDetail',$featuredJob->id) }}" class="btn btn-primary btn-lg">Details</a>
+                                        <a href="{{ route('jobDetail', $featuredJob->id) }}" class="btn btn-primary btn-lg">Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +159,7 @@
                                     </div>
 
                                     <div class="d-grid mt-3">
-                                        <a href="{{ route('jobDetail',$latestJob->id) }}" class="btn btn-primary btn-lg">Details</a>
+                                        <a href="{{ route('jobDetail', $latestJob->id) }}" class="btn btn-primary btn-lg">Details</a>
                                     </div>
                                 </div>
                             </div>
