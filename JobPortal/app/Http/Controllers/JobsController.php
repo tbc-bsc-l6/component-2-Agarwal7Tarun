@@ -10,6 +10,9 @@ use App\Models\SavedJob;
 use App\Models\User;
 use App\Models\JobApplication;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\JobNotificationEmail;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Mail;
 class JobsController extends Controller
 {
         //This method will show jobs page
@@ -158,7 +161,7 @@ class JobsController extends Controller
             'user' => Auth::user(),
             'job' => $job,
         ];
-        // Mail::to($employer->email)->send(new JobNotificationEmail($mailData));
+        Mail::to($employer->email)->send(new JobNotificationEmail($mailData));
 
         $message = "You have successfully applied.";
         Session()->flash('success',$message);
