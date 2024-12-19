@@ -50,27 +50,6 @@ class CategoryController extends Controller
         }
     }
 
-    public function destroy(Request $request){
-
-        $category = Category::find($request->id);
-        if($category == null){
-            $message = "Job not found.";
-            Session()->flash('error',$message);
-            return response()->json([
-                'status' => false,
-                'message' => $message,
-            ]);
-        }
-
-        $category->delete();
-        $message = "Job deleted successfully.";
-        Session()->flash('success',$message);
-        return response()->json([
-            'status' => true,
-            'message' => $message,
-        ]);
-    }
-
     public function create(){
         return view('admin.categories.create');
     }

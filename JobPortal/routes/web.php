@@ -73,10 +73,8 @@ Route::group(['prefix' => 'admin','middleware' => 'checkRole'], function () {
         Route::get('/categories',[CategoryController::class,'index'])->name('admin.categories');
         Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('admin.categories.edit');
         Route::put('/category/{id}',[CategoryController::class,'update'])->name('admin.categories.update');
-        Route::delete('/categories',[CategoryController::class,'destroy'])->name('admin.categories.destroy');
         // Job Types
         Route::get('/job-types',[JobTypeController::class,'index'])->name('admin.job_types');
-        Route::delete('/job-types/{id}',[JobTypeController::class,'destroy'])->name('admin.job_types.destroy');
         Route::get('/create-job-types',[JobTypeController::class,'create'])->name('admin.job_types.create');
         Route::post('/save-job-types',[JobTypeController::class,'save'])->name('admin.job_types.save');
         Route::get('/edit-job-types/{id}',[JobTypeController::class,'edit'])->name('admin.job_types.edit');

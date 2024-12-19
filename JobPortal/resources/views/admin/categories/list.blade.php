@@ -61,7 +61,6 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a class="dropdown-item" href="{{ route('admin.categories.edit',$category->id) }}"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></li>
-                                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="deleteCategory({{ $category->id }})"><i class="fa fa-trash" aria-hidden="true"></i> Remove</a></li>
                                                     </ul>
                                                 </div>
                                             </td>
@@ -89,21 +88,3 @@
 
 @endsection
 
-@section('customJs')
-    <script type="text/javascript">
-
-        function deleteCategory(id){
-            if(confirm('Are you sure you want to delete?')){
-                $.ajax({
-                    type: "delete",
-                    url: "{{ route('admin.categories.destroy') }}",
-                    data: {id: id},
-                    dataType: "json",
-                    success: function (response) {
-                        window.location.href="{{ route('admin.categories') }}";
-                    }
-                });
-            }
-        }
-    </script>
-@endsection
