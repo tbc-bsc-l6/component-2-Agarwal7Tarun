@@ -30,12 +30,15 @@
 						<a class="nav-link" aria-current="page" href="<?php echo e(route('jobs')); ?>">Find Jobs</a>
 					</li>										
 				</ul>		
-				<?php if(!Auth::check()): ?>		
-					<a class="btn btn-outline-primary me-2" href="<?php echo e(route('account.login')); ?>" type="submit">Login</a>
-				<?php else: ?>
-					<a class="btn btn-outline-primary me-2" href="<?php echo e(route('account.profile')); ?>" type="submit">My Account</a>
+				<?php if(!Auth::check()): ?>
+				<a class="btn btn-outline-primary me-2" href="<?php echo e(route('account.login')); ?>" type="submit">Login</a>
+			<?php else: ?>
+				<?php if(Auth::user()->role == 'admin'): ?>
+					<a class="btn btn-outline-primary me-2" href="<?php echo e(route('admin.dashboard')); ?>" type="submit">Admin Panel</a>
 				<?php endif; ?>
-				
+
+				<a class="btn btn-outline-primary me-2" href="<?php echo e(route('account.profile')); ?>" type="submit">Account</a>
+			<?php endif; ?>
 				<a class="btn btn-primary" href="<?php echo e(route('account.createJob')); ?>" type="submit">Post a Job</a>
 			</div>
 		</div>
