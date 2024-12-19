@@ -51,7 +51,7 @@
                                             <td><?php echo e($user->designation); ?></div></td>
                                             <td><?php echo e($user->mobile); ?></td>
                                             <td>
-                                                <div class="action-dots float-end">
+                                                <div class="action-dots">
                                                     <button href="#" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                     </button>
@@ -65,7 +65,7 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="6">Users not Found</td>
+                                            <td colspan="6">Users Not Found</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
