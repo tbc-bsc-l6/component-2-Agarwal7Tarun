@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 
 // Public Routes
@@ -18,6 +19,7 @@ Route::get('/jobs/detail/{id}', [JobsController::class, 'jobDetail'])->name('job
 // Apply job Route
 Route::post('/apply-job',[JobsController::class,'applyJob'])->name('applyJob');
 Route::post('/save-job',[JobsController::class,'saveJob'])->name('saveJob');
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 // Guest Middleware Routes
 // Grouped Account Routes
 Route::prefix('account')->group(function () {

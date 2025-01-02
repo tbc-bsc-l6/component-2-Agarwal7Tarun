@@ -28,6 +28,9 @@
 					</li>	
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="<?php echo e(route('jobs')); ?>">Find Jobs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="<?php echo e(route('news.index')); ?>">News</a>
 					</li>										
 				</ul>		
 				<?php if(!Auth::check()): ?>
